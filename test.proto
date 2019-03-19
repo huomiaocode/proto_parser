@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+enum Enum1 {
+    EN1_1 = 1000;
+    EN1_2 = 1001;                // 这是 EN1_2 的注释
+    EN1_3 = 1002;                // 这是 EN1_3 的注释 {test}
+}
+
+enum Enum2 {
+    EN2_1 = 2000;
+    EN2_2 = 2001;                // 这是 EN2_2 的注释
+    EN2_3 = 2002;                // 这是 EN2_3 的注释 {test}
+}
+
+// 消息1
+message Msg1 {
+    optional uint32 id = 1;
+    optional string name = 2;
+    string nickname = 3;
+}
+
+// 数据项
+message DataItem {
+    uint32 id = 1;            // id
+    uint32 count = 1;        // count
+}
+
+// 消息2
+message Msg2 {
+    
+    // 消息21
+    message Msg21 {
+        uint32 id1 = 1;                // 
+        uint32 id2 = 2;                //
+    }
+    
+    // 消息22
+    message Msg22 {
+        uint32 id1 = 1;                // 
+        uint32 id2 = 2;
+        uint32 id3 = 2;
+    }
+
+    uint32 result = 1;                // 
+    uint32 reason = 2;                // 原因
+    string info = 3;                // 信息提示
+    repeated DataItem list = 5;     // 数据列表
+}
