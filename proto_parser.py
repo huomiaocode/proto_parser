@@ -78,14 +78,14 @@ class ProtoInfo:
         parseContent = re.sub(c, rep_func, parseContent)
 
         # 查找枚举
-        c = re.compile("(//[^\{]*?(?=enum))?(enum\s+\w+\s*\{[^\}]*?\})", flags=re.M|re.S)
+        c = re.compile("(//[^\{\}]*?(?=enum))?(enum\s+\w+\s*\{[^\}]*?\})", flags=re.M|re.S)
         enums = c.findall(parseContent)
         parseContent = re.sub(c, "", parseContent)
 
         # 查找消息，循环遍历，处理message嵌套
         messages = []
         while True:
-            c = re.compile("(//[^\{]*?(?=message))?(message\s+\w+\s*\{[^\{\}]*?\})", flags=re.M|re.S)
+            c = re.compile("(//[^\n\{\}]*?(?=message))?(message\s+\w+\s*\{[^\{\}]*?\})", flags=re.M|re.S)
             messages_ = c.findall(parseContent)
             if len(messages_) == 0:
                 break
